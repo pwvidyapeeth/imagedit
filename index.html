@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixelForge Studio - Professional Web Image Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWix+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkR4j8wQfQ2M8U6RF6M0H6M2dI0r4f2Z8i6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-dark">
+  <div class="page-bg"></div>
+
+  <section class="landing" id="landing">
+    <header class="landing-nav glass">
+      <h1><i class="fa-solid fa-wand-magic-sparkles"></i> PixelForge Studio</h1>
+      <button class="btn btn-primary" id="startEditingBtn">Start Editing</button>
+    </header>
+
+    <div class="hero glass">
+      <h2>Create Premium Visuals in Your Browser</h2>
+      <p>Powerful layer-based image editing with modern UI, real-time effects, and pro tools — no install required.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="heroStartBtn">Launch Editor</button>
+        <button class="btn btn-outline" id="learnMoreBtn">How It Works</button>
+      </div>
+    </div>
+
+    <div class="grid-sections">
+      <section class="glass card" id="features">
+        <h3>Features</h3>
+        <ul>
+          <li>Layer system, draw, text, crop, resize</li>
+          <li>Brightness, contrast, saturation + filters</li>
+          <li>Undo/redo, zoom, before/after preview</li>
+          <li>Export PNG/JPG with compression</li>
+        </ul>
+      </section>
+      <section class="glass card" id="how-it-works">
+        <h3>How It Works</h3>
+        <ol>
+          <li>Upload or drag-drop your image</li>
+          <li>Edit using tools and right-panel properties</li>
+          <li>Export optimized output in your desired format</li>
+        </ol>
+      </section>
+      <section class="glass card" id="contact">
+        <h3>Contact</h3>
+        <p>Need custom integrations, login, or cloud save? Reach out at:</p>
+        <a href="mailto:hello@pixelforge.local">hello@pixelforge.local</a>
+      </section>
+    </div>
+  </section>
+
+  <main class="editor hidden" id="editor">
+    <nav class="top-nav glass">
+      <div class="nav-left">
+        <button class="btn" id="backToLanding"><i class="fa-solid fa-arrow-left"></i></button>
+        <label class="btn">
+          <i class="fa-solid fa-upload"></i> Upload
+          <input type="file" id="fileInput" accept="image/*" hidden>
+        </label>
+        <button class="btn" id="saveProjectBtn"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+        <button class="btn" id="downloadBtn"><i class="fa-solid fa-download"></i> Download</button>
+      </div>
+      <div class="nav-center">
+        <button class="btn" id="undoBtn"><i class="fa-solid fa-rotate-left"></i> Undo</button>
+        <button class="btn" id="redoBtn"><i class="fa-solid fa-rotate-right"></i> Redo</button>
+        <button class="btn" id="beforeAfterBtn"><i class="fa-solid fa-eye"></i> Before/After</button>
+      </div>
+      <div class="nav-right">
+        <button class="btn" id="zoomOutBtn"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+        <span id="zoomLabel">100%</span>
+        <button class="btn" id="zoomInBtn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+        <button class="btn" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+      </div>
+    </nav>
+
+    <div class="workspace">
+      <aside class="sidebar glass" id="toolSidebar">
+        <h4>Tools</h4>
+        <button class="tool active" data-tool="move"><i class="fa-solid fa-arrow-pointer"></i> Move</button>
+        <button class="tool" data-tool="crop"><i class="fa-solid fa-crop-simple"></i> Crop</button>
+        <button class="tool" data-tool="resize"><i class="fa-solid fa-up-right-and-down-left-from-center"></i> Resize</button>
+        <button class="tool" data-tool="rotate"><i class="fa-solid fa-rotate"></i> Rotate/Flip</button>
+        <button class="tool" data-tool="adjust"><i class="fa-solid fa-sliders"></i> Adjust</button>
+        <button class="tool" data-tool="filter"><i class="fa-solid fa-wand-magic"></i> Filters</button>
+        <button class="tool" data-tool="text"><i class="fa-solid fa-font"></i> Text</button>
+        <button class="tool" data-tool="draw"><i class="fa-solid fa-pen"></i> Draw</button>
+        <button class="tool" data-tool="eraser"><i class="fa-solid fa-eraser"></i> Eraser</button>
+        <button class="tool" data-tool="bg"><i class="fa-solid fa-fill-drip"></i> Background</button>
+      </aside>
+
+      <section class="canvas-area" id="dropZone">
+        <div class="canvas-shell" id="canvasShell">
+          <canvas id="mainCanvas" width="1200" height="800"></canvas>
+          <div class="loading hidden" id="loadingOverlay"><div class="spinner"></div></div>
+        </div>
+        <p class="hint">Drag & drop an image here or use Upload.</p>
+      </section>
+
+      <aside class="right-panel glass" id="propertiesPanel">
+        <h4>Properties</h4>
+        <div id="propertiesContent"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
